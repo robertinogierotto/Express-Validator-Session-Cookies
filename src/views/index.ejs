@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Colores</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
+  <body <%= typeof colorDeFondo != 'undefined' ? 'style=background-color:' + colorDeFondo : '' %>>
+    <h1>Mesaje</h1>
+    <!-- aca poner el mensaje que dice el entregable -->
+    <% if (locals.frase) { %>
+      <p><%= frase %></p>
+  <% } %>
+    
+    <div id="errores">
+      <h2>Errores</h2>
+    <!-- aca ponemos los errores del validator -->
+    <% if (locals.errors) { %>
+      <% errors.forEach(error => { %>
+      <li style="color: red"><%= error.msg %></li style="color: red">
+        <% }) %>
+    <% } %>
+
+    </div>
+    
+    <br>
+    <br>
+
+    <form action="/" method="POST">
+      <div>
+        <label for="">Ingrese su nombre</label>
+        <input type="text" name="name" value="<%= locals.old && old.name %>">
+      </div>
+      
+      <div>
+        <label for="">Seleccione un color</label>
+        <select name="color">
+          <option value="">Elegí un color</option>
+          <option value="yellow">Amarillo</option>
+          <option value="blue">Azul</option>
+          <option value="red">Rojo</option>
+          <option value="green">Verde</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="">Ingrese su mail</label>
+        <input type="email" name="email" id="" value="<%= locals.old && old.email %>">
+      </div>
+
+      <div>
+        <label for="">Ingrese su edad</label>
+        <input type="text" name="edad" id="" value="<%= locals.old && old.edad %>">
+      </div>
+
+      <div>
+        <label for="">Recordar color</label>
+        <input type="checkbox" name="recordar_color" id="">
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+  </body>
+</html>
